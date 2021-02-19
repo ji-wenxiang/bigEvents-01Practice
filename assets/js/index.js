@@ -10,7 +10,7 @@ function getUserInfo() {
             Authorization: localStorage.getItem('token') || ''
         },
         success(res) {
-            console.log(res);
+            // console.log(res);
             if (res.status !== 0) return layer.msg('获取失败！')
             // layer.msg('获取成功！')
             // 获取成功后，将信息渲染到页面
@@ -27,12 +27,13 @@ function renderAvatar(data) {
 
     // 首先判断有没有图片头像，没有就用文本头像
     // 将tex-avatar 中写入昵称或用户名的首字母，大写
-    if (data.user_pic) {
-        $('.tex-avatar').html(wel[0].toUpperCase())
+    if (data.user_pic == null) {
+        $('.tex-avatar').html(wel[0].toUpperCase()).show()
         $('.pic-avatar').hide()
+
     } else {
         $('.tex-avatar').hide()
-        $('.pic-avatar').attr('src', data.user_pic)
+        $('.pic-avatar').attr('src', data.user_pic).show()
     }
 }
 
